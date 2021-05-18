@@ -45,17 +45,24 @@ public class UIController {
     @Autowired
     private RestTemplate template;
     
-    private String urlUiBackend;
+    private final String urlUiBackend;
     
-    private String urlProductsAll = urlUiBackend + "products/all";
-    private String urlProductsAdd = urlUiBackend + "products/add";
-    private String urlProductsDelete = urlUiBackend + "products/delete";
-    private String urlCart = urlUiBackend + "cart";
-    private String urlConfirm = urlUiBackend + "confirm";
+    private final String urlProductsAll;
+    private final String urlProductsAdd;
+    private final String urlProductsDelete;
+    private final String urlCart;
+    private final String urlConfirm;
     
     
     public UIController(@Value("${t2.uibackend.url}") String urlUiBackend) {
         this.urlUiBackend = urlUiBackend;
+        
+        // must not set before base url is set!!!
+        urlProductsAll = urlUiBackend + "products/all";
+        urlProductsAdd = urlUiBackend + "products/add";
+        urlProductsDelete = urlUiBackend + "products/delete";
+        urlCart = urlUiBackend + "cart";
+        urlConfirm = urlUiBackend + "confirm";
     }
     
     ////// PAGES TO REALLY LOOK AT ///////////
