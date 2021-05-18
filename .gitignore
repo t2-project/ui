@@ -32,4 +32,11 @@ build/
 ### VS Code ###
 .vscode/
 
+
+### me ###
+*.swp
+*.log
+**/*.*.properties
+.mvn
 tools.descartes.teastore.webui
+jsp-tut
