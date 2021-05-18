@@ -13,23 +13,10 @@
 			</button>
 			<a class="navbar-brand" href="<c:url value="/products"/>">
     <img src="<c:url value="/images/front.png"/>" width="30" height="30" class="d-inline-block align-top" alt="">
-    TeaStore</a>
+    T2 Store</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right headnavbarlist">
-				<c:choose>
-					<c:when test="${login == true}">
-						<li><form action="loginAction" method="POST">
-								<button type="submit" name="logout" class="logout">Logout</button>
-							</form></li>
-						<li><a href="<c:url value="/profile"/>"><span
-								class="glyphicon glyphicon glyphicon-user" aria-hidden="true"></span></a></li>
-					</c:when>
-					<c:otherwise>
-						<li><a href="<c:url value="/login" />" >Sign
-								in</a></li>
-					</c:otherwise>
-				</c:choose>
 				<li><a href="<c:url value="/cart"/>"><span
 						class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 			</ul>

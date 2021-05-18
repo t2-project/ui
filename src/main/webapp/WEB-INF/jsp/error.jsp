@@ -19,15 +19,17 @@
 					<c:otherwise>Oops, something went wrong!</c:otherwise>
 				</c:choose>
 			</h2>
-			
-			<c:if test="${not empty messageparagraph}"><p>${messageparagraph}</p></c:if>
-			
+
+			<c:if test="${not empty messageparagraph}">
+				<p>${messageparagraph}</p>
+			</c:if>
+
 			<img class="titleimage" src="${errorImage}" align="middle" />
 			<div class="row">
 				<input type="button" class="btn errorbtn" value="Back to Shop"
 					onclick="location.href = '<c:url value='/' />';">
-				<input type="button" class="btn errorbtn" value="Check Status"
-					onclick="location.href = '<c:url value='/status' />';">	
+				<!--  input type="button" class="btn errorbtn" value="Check Status"
+					onclick="location.href = '<c:url value='/status' />';"-->
 			</div>
 		</div>
 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -27,7 +28,15 @@ import org.springframework.web.servlet.view.RedirectView;
 import de.unistuttgart.t2.common.CartContent;
 import de.unistuttgart.t2.common.OrderRequest;
 import de.unistuttgart.t2.common.Product;
+import de.unistuttgart.t2.ui.webui.domain.ItemToAdd;
+import de.unistuttgart.t2.ui.webui.domain.PaymentDetails;
 
+/**
+ * Defines the http enpoints of the UI.
+ * 
+ * @author maumau
+ *
+ */
 @Controller
 public class UIController {
     
@@ -36,13 +45,18 @@ public class UIController {
     @Autowired
     private RestTemplate template;
     
-    private String urlUiBackend = "http://localhost:8081/";
+    private String urlUiBackend;
     
     private String urlProductsAll = urlUiBackend + "products/all";
     private String urlProductsAdd = urlUiBackend + "products/add";
     private String urlProductsDelete = urlUiBackend + "products/delete";
     private String urlCart = urlUiBackend + "cart";
     private String urlConfirm = urlUiBackend + "confirm";
+    
+    
+    public UIController(@Value("${t2.uibackend.url}") String urlUiBackend) {
+        this.urlUiBackend = urlUiBackend;
+    }
     
     ////// PAGES TO REALLY LOOK AT ///////////
     
@@ -99,7 +113,7 @@ public class UIController {
     ////////// ACTIONS /////////////
    
     @PostMapping("/add")
-    public RedirectView add(@ModelAttribute("item") ItemToAdd item, RedirectAttributes redirectAttributes, HttpSession session) {
+    public String add(@ModelAttribute("item") ItemToAdd item, HttpSession session) {
          
         LOG.info("SessionID : " + session.getId());
         LOG.info("Item to Add : " + item.toString());
@@ -117,11 +131,7 @@ public class UIController {
         
         LOG.info(response.getBody().toString());
         
-        //TODO redirect : to display added products
-        
-        final RedirectView redirectView = new RedirectView("/products", true);
-        //redirectAttributes.addFlashAttribute("title", "");
-        return redirectView;
+        return "product";
     }
        
     @PostMapping("/delete")
@@ -162,7 +172,7 @@ public class UIController {
         
         // Request and send
         RequestEntity<OrderRequest> request = new RequestEntity<OrderRequest>(body, responseHeaders, HttpMethod.POST, URI.create(urlConfirm));        
-        ResponseEntity<List<Product>> response = template.exchange(request, new ParameterizedTypeReference<List<Product>>(){});
+        template.exchange(request, void.class);
        
         //Set view
         model.addAttribute("title", "ConfirmING");

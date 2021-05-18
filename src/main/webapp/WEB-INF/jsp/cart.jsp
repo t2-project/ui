@@ -5,7 +5,7 @@
 	<div class="row">
 		<div class="col-sm-9 col-md-6  col-lg-8">
 			<h2 class="minipage-title">Shopping Cart</h2>
-			<form:form action="delete" method="POST" modelAttribute="item">
+			<!--  -->
 				<table class="table table-bordered">
 					<thead>
 						<tr>
@@ -22,6 +22,7 @@
 					<tbody>
 						<c:set var="count" value="0" scope="page" />
 						<c:forEach items="${OrderItems}" var="orderItem">
+						<form:form action="delete" method="POST" modelAttribute="item">
 							<tr>
 								
 								<td>${orderItem.id}
@@ -48,6 +49,7 @@
 										<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 									</button></td>
 							</tr>
+						</form:form>
 						</c:forEach>
 						<c:if test="${empty OrderItems}">
 							<tr>
@@ -61,7 +63,7 @@
 						</tr-->
 					</tbody>
 				</table>
-			</form:form>
+			<!--  -->
 			<form action="confirm" method="GET">	
 				<c:if test="${!empty OrderItems}">
 					<input name="confirm" class="btn" value="Proceed to Checkout"
