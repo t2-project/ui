@@ -36,7 +36,7 @@ jobs:
       with:
         distribution: 'adopt'
         java-version: '11'
-   - name: build common
+    - name: build common
       run: cd common && echo $TRAM_VERSION && mvn clean install
     - name: install common
       run: cd common && mvn install:install-file -Dfile=./target/common-1.0-SNAPSHOT.jar -DpomFile=./pom.xml
