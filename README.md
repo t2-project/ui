@@ -9,7 +9,10 @@ Confer the [Documentation](https://t2-documentation.readthedocs.io/en/latest/gui
 
 ## Usage
 
-Go to `<your-ui-url>/products` to see all products. 
+Go to `<your-ui-url>/ui/products` to see all products. 
+
+(In theory there is some css to make things look beautiful, in practice the css is lost. I don't know why the app does not find it.)
+
 If the product name or description is too long, the view might be a bit chopped up, but don't mind that. 
 
 Use the tiny arrow to set the number of units you want to add to your cart (you can not decrease them below zero) and press the "add" button to add that product to your cart.
