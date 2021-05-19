@@ -1,4 +1,4 @@
-package de.unistuttgart.t2.ui.webui.domain;
+package de.unistuttgart.t2.ui.domain;
 
 /**
  * TODO 

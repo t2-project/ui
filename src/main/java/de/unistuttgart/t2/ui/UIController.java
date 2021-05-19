@@ -1,4 +1,4 @@
-package de.unistuttgart.t2.ui.webui.app;
+package de.unistuttgart.t2.ui;
 
 import java.net.URI;
 import java.util.List;
@@ -28,8 +28,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import de.unistuttgart.t2.common.CartContent;
 import de.unistuttgart.t2.common.OrderRequest;
 import de.unistuttgart.t2.common.Product;
-import de.unistuttgart.t2.ui.webui.domain.ItemToAdd;
-import de.unistuttgart.t2.ui.webui.domain.PaymentDetails;
+import de.unistuttgart.t2.ui.domain.ItemToAdd;
+import de.unistuttgart.t2.ui.domain.PaymentDetails;
 
 /**
  * Defines the http enpoints of the UI.

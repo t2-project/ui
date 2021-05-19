@@ -1,4 +1,4 @@
-package de.unistuttgart.t2.ui.webui.app;
+package de.unistuttgart.t2.ui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
