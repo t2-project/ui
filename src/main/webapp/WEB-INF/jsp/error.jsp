@@ -27,7 +27,7 @@
 			<img class="titleimage" src="${errorImage}" align="middle" />
 			<div class="row">
 				<input type="button" class="btn errorbtn" value="Back to Shop"
-					onclick="location.href = '<c:url value='/' />';">
+					onclick="location.href = '<c:url value='/ui/' />';">
 				<!--  input type="button" class="btn errorbtn" value="Check Status"
 					onclick="location.href = '<c:url value='/status' />';"-->
 			</div>

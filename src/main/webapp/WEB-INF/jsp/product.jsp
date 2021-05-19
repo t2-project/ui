@@ -8,9 +8,9 @@
 
 			<div class="row">
 				<input type="button" class="btn errorbtn" value="Back to Shop"
-					onclick="location.href = '<c:url value='/products' />';"> <input
+					onclick="location.href = '<c:url value='/ui/products' />';"> <input
 					type="button" class="btn errorbtn" value="Go to Cart"
-					onclick="location.href = '<c:url value='/cart' />';">
+					onclick="location.href = '<c:url value='/ui/cart' />';">
 			</div>
 		</div>
 	</div>

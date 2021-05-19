@@ -11,13 +11,13 @@
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="<c:url value="/products"/>">
+			<a class="navbar-brand" href="<c:url value="/ui/products"/>">
     <img src="<c:url value="/images/front.png"/>" width="30" height="30" class="d-inline-block align-top" alt="">
     T2 Store</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right headnavbarlist">
-				<li><a href="<c:url value="/cart"/>"><span
+				<li><a href="<c:url value="/ui/cart"/>"><span
 						class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a></li>
 			</ul>
 		</div>
