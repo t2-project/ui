@@ -45,8 +45,6 @@ public class UIController {
     @Autowired
     private RestTemplate template;
     
-    private final String urlUiBackend;
-    
     private final String urlProductsAll;
     private final String urlProductsAdd;
     private final String urlProductsDelete;
@@ -55,7 +53,6 @@ public class UIController {
     
     
     public UIController(@Value("${t2.uibackend.url}") String urlUiBackend) {
-        this.urlUiBackend = urlUiBackend;
         
         // must not set before base url is set!!!
         urlProductsAll = urlUiBackend + "products/all";
@@ -161,7 +158,6 @@ public class UIController {
         //TODO redirect : to display deleted products
         
         final RedirectView redirectView = new RedirectView("/ui/cart", true);
-        //redirectAttributes.addFlashAttribute("title", "");
         return redirectView;
     }
 
@@ -182,37 +178,10 @@ public class UIController {
         template.exchange(request, void.class);
        
         //Set view
-        model.addAttribute("title", "ConfirmING");
+        model.addAttribute("title", "Confirmed");
 
         // TODO : Display confirmation message :) / (or Failure) 
         
         return "category";        
-    }
-    
-    
-    
-    
-    /////////// FOR LEARNING PUPROSE - DELETE LATER ///////////////
-    
-    @GetMapping("/ui/test")
-    public String test(HttpSession session, Model model) {
-        
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("sessionid", session.getId());
-        responseHeaders.set(HttpHeaders.COOKIE, session.getId());
-        
-        model.addAttribute("givenCookie", session.getId());
-        
-        RequestEntity<String> request = new RequestEntity<String>(responseHeaders, HttpMethod.GET, URI.create(urlUiBackend));
-        
-        ResponseEntity<String> response = template.exchange(request, String.class);
-        
-        HttpHeaders headers = response.getHeaders();
-        String setCookie = headers.getFirst(HttpHeaders.SET_COOKIE);
-        
-        model.addAttribute("response", response.getBody());
-        model.addAttribute("setCookie", setCookie);
-            
-        return "test-view"; 
     }
 }
