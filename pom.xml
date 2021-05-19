@@ -11,7 +11,7 @@
 	<groupId>de.unistuttgart.t2.ui</groupId>
 	<artifactId>webui</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<!-- packaging>war</packaging-->
+	<packaging>war</packaging>
 	<name>webui</name>
 	<description>webui of t2 store</description>
 	<properties>
@@ -45,15 +45,14 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
+            <!--version>${jstl.version}</version-->
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <!--uncomment below if deploying in web container-->
-            <scope>provided</scope>
+            <!-- scope>provided</scope-->
         </dependency>
-
 
 
 	</dependencies>
