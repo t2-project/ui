@@ -67,13 +67,13 @@ public class UIController {
     
     ////// PAGES TO REALLY LOOK AT ///////////
     
-    @GetMapping("/")
+    @GetMapping("/ui/")
     public String index(Model model) {
         model.addAttribute("title", "T2 Store");
         return "index";
     }
     
-    @GetMapping("/products")
+    @GetMapping("/ui/products")
     public String products(Model model) {
         model.addAttribute("title", "Products");
         model.addAttribute("item", new ItemToAdd());
@@ -85,7 +85,7 @@ public class UIController {
         return "category";
     }
     
-    @GetMapping("/cart")
+    @GetMapping("/ui/cart")
     public String cart(Model model, HttpSession session) {
         model.addAttribute("title", "Cart");
         model.addAttribute("item", new ItemToAdd());
@@ -107,7 +107,7 @@ public class UIController {
         return "cart";
     }
 
-    @GetMapping("/confirm")
+    @GetMapping("/ui/confirm")
     public String confirm(Model model, HttpSession session) {
         
         model.addAttribute("title", "Confirm");
@@ -119,7 +119,7 @@ public class UIController {
    
     ////////// ACTIONS /////////////
    
-    @PostMapping("/add")
+    @PostMapping("/ui/add")
     public String add(@ModelAttribute("item") ItemToAdd item, HttpSession session) {
          
         LOG.info("SessionID : " + session.getId());
@@ -141,7 +141,7 @@ public class UIController {
         return "product";
     }
        
-    @PostMapping("/delete")
+    @PostMapping("/ui/delete")
     public RedirectView delete(@ModelAttribute("item") ItemToAdd item, RedirectAttributes redirectAttributes, HttpSession session) {
          
         LOG.info("SessionID : " + session.getId());
@@ -160,13 +160,13 @@ public class UIController {
        
         //TODO redirect : to display deleted products
         
-        final RedirectView redirectView = new RedirectView("/cart", true);
+        final RedirectView redirectView = new RedirectView("/ui/cart", true);
         //redirectAttributes.addFlashAttribute("title", "");
         return redirectView;
     }
 
     
-    @PostMapping("/confirm")
+    @PostMapping("/ui/confirm")
     public String confirm(@ModelAttribute("details") PaymentDetails details, Model model, HttpSession session) {
         LOG.info("SessionID : " + session.getId());
         
@@ -194,7 +194,7 @@ public class UIController {
     
     /////////// FOR LEARNING PUPROSE - DELETE LATER ///////////////
     
-    @GetMapping("/test")
+    @GetMapping("/ui/test")
     public String test(HttpSession session, Model model) {
         
         HttpHeaders responseHeaders = new HttpHeaders();
