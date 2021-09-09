@@ -34,14 +34,12 @@
 			<scope>test</scope>
 		</dependency>
 		
-				<!-- Internal Dependencies -->
 		<dependency>
 			<groupId>de.unistuttgart.t2</groupId>
 			<artifactId>common</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 
-<!-- BAELDUNG TUTORIAL -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
