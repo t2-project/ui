@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +24,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import de.unistuttgart.t2.common.CartContent;
 import de.unistuttgart.t2.common.OrderRequest;
 import de.unistuttgart.t2.common.Product;
+import de.unistuttgart.t2.common.UpdateCartRequest;
 import de.unistuttgart.t2.ui.domain.ItemToAdd;
 import de.unistuttgart.t2.ui.domain.PaymentDetails;
 
@@ -46,20 +45,14 @@ public class UIController {
     private RestTemplate template;
     
     private final String urlProductsAll;
-    private final String urlProductsAdd;
-    private final String urlProductsDelete;
     private final String urlCart;
     private final String urlConfirm;
     
     
     public UIController(@Value("${t2.uibackend.url}") String urlUiBackend) {
-        
-        // must not set before base url is set!!!
-        urlProductsAll = urlUiBackend + "products/all";
-        urlProductsAdd = urlUiBackend + "products/add";
-        urlProductsDelete = urlUiBackend + "products/delete";
-        urlCart = urlUiBackend + "cart";
-        urlConfirm = urlUiBackend + "confirm";
+        urlProductsAll = urlUiBackend + "products/";
+        urlCart = urlUiBackend + "cart/";
+        urlConfirm = urlUiBackend + "confirm/";
     }
     
     ////// PAGES TO REALLY LOOK AT ///////////
@@ -89,12 +82,8 @@ public class UIController {
         
         LOG.info("SessionID : " + session.getId());
         
-        // Header
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set(HttpHeaders.COOKIE, session.getId());
-        
         // Request and send
-        RequestEntity<Void> request = new RequestEntity<Void>(responseHeaders, HttpMethod.GET, URI.create(urlCart));        
+        RequestEntity<Void> request = new RequestEntity<Void>(HttpMethod.GET, URI.create(urlCart+session.getId()));        
         ResponseEntity<List<Product>> response = template.exchange(request, new ParameterizedTypeReference<List<Product>>(){});
         
         //Set View
@@ -122,16 +111,13 @@ public class UIController {
         LOG.info("SessionID : " + session.getId());
         LOG.info("Item to Add : " + item.toString());
         
-        // Header
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set(HttpHeaders.COOKIE, session.getId());
-        
         // Body
-        CartContent body = new CartContent(Map.of(item.getProductId(), item.getUnits()));
+        UpdateCartRequest body = new UpdateCartRequest(Map.of(item.getProductId(), item.getUnits()));
+        RequestEntity<UpdateCartRequest> request = new RequestEntity<UpdateCartRequest>(body, HttpMethod.POST, URI.create(urlCart+session.getId()));        
         
         // Request and send
-        RequestEntity<CartContent> request = new RequestEntity<CartContent>(body, responseHeaders, HttpMethod.POST, URI.create(urlProductsAdd));        
         ResponseEntity<List<Product>> response = template.exchange(request, new ParameterizedTypeReference<List<Product>>(){});
+        
         
         LOG.info(response.getBody().toString());
         
@@ -144,17 +130,10 @@ public class UIController {
         LOG.info("SessionID : " + session.getId());
         LOG.info("Item to Delete : " + item.toString());
         
-        // Header
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set(HttpHeaders.COOKIE, session.getId());
-        
         // Body
-        CartContent body = new CartContent(Map.of(item.getProductId(), item.getUnits()));
+        UpdateCartRequest body = new UpdateCartRequest(Map.of(item.getProductId(), -1 * item.getUnits()));
+        template.postForEntity(URI.create(urlCart+session.getId()), body, Void.class);
         
-        // Request and send
-        RequestEntity<CartContent> request = new RequestEntity<CartContent>(body, responseHeaders, HttpMethod.POST, URI.create(urlProductsDelete));        
-        template.exchange(request, Void.class);
-       
         //TODO redirect : to display deleted products
         
         final RedirectView redirectView = new RedirectView("/ui/cart", true);
@@ -166,15 +145,11 @@ public class UIController {
     public String confirm(@ModelAttribute("details") PaymentDetails details, Model model, HttpSession session) {
         LOG.info("SessionID : " + session.getId());
         
-        // Header
-        HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set(HttpHeaders.COOKIE, session.getId());
-        
         //Body
-        OrderRequest body = new OrderRequest(details.getCardNumber(), details.getCardOwner(), details.getChecksum());
+        OrderRequest body = new OrderRequest(details.getCardNumber(), details.getCardOwner(), details.getChecksum(), session.getId());
         
         // Request and send
-        RequestEntity<OrderRequest> request = new RequestEntity<OrderRequest>(body, responseHeaders, HttpMethod.POST, URI.create(urlConfirm));        
+        RequestEntity<OrderRequest> request = new RequestEntity<OrderRequest>(body, HttpMethod.POST, URI.create(urlConfirm));        
         template.exchange(request, void.class);
        
         //Set view
