@@ -7,13 +7,15 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
+import de.unistuttgart.t2.common.BaseScan;
+
 /**
  * WebUi for the human user. It talks to the UI Backend.
  * 
  * @author maumau
  *
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackageClasses = BaseScan.class)
 public class WebuiApplication extends SpringBootServletInitializer {
 
     @Override
