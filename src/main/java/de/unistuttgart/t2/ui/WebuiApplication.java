@@ -11,9 +11,8 @@ import de.unistuttgart.t2.common.BaseScan;
 
 /**
  * WebUi for the human user. It talks to the UI Backend.
- * 
- * @author maumau
  *
+ * @author maumau
  */
 @SpringBootApplication(scanBasePackageClasses = BaseScan.class)
 public class WebuiApplication extends SpringBootServletInitializer {
@@ -22,13 +21,13 @@ public class WebuiApplication extends SpringBootServletInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
         return builder.sources(WebuiApplication.class);
     }
-    
-	public static void main(String[] args) {
-		SpringApplication.run(WebuiApplication.class, args);
-	}
-	
-	@Bean 
-	public RestTemplate template() {
-	    return new RestTemplate();
-	}
+
+    public static void main(String[] args) {
+        SpringApplication.run(WebuiApplication.class, args);
+    }
+
+    @Bean
+    public RestTemplate template() {
+        return new RestTemplate();
+    }
 }
