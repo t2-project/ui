@@ -46,7 +46,7 @@ public class UIController {
 
     @GetMapping("/ui/")
     public String index(Model model) {
-        model.addAttribute("title", "T2 Store");
+        model.addAttribute("title", "T2-Project");
         return "index";
     }
 

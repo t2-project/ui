@@ -1,11 +1,11 @@
 # UI Service
 
-This Service is the UI of the T2 Store.
+This Service is the UI of the T2-Project.
 It is based on the UI of the original [TeaStore](https://github.com/DescartesResearch/TeaStore).
 
 ## Build and Run
 
-Confer the [Documentation](https://t2-documentation.readthedocs.io/en/latest/guides/kube.html) on how to build, run or deploy the T2 Store services.
+Confer the [Documentation](https://t2-documentation.readthedocs.io/en/latest/guides/kube.html) on how to build, run or deploy the T2-Project services.
 
 ## Usage
 
