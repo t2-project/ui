@@ -13,7 +13,7 @@
 			</button>
 			<a class="navbar-brand" href="<c:url value="/ui/products"/>">
     <img src="<c:url value="/images/front.png"/>" width="30" height="30" class="d-inline-block align-top" alt="">
-    T2 Store</a>
+    T2-Project</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
 			<ul class="nav navbar-nav navbar-right headnavbarlist">
