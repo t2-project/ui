@@ -1,6 +1,13 @@
-# UI Service
+# UI (DEPRECATED)
 
-This Service is the UI of the T2-Project.
+## ⛔️ DEPRECATION NOTICE ⛔️
+
+This project is no longer used or maintained.  
+It has been superseded by <https://github.com/t2-project/frontend>.
+
+## Description
+
+This Service **was** the UI of the T2-Project.
 It is based on the UI of the original [TeaStore](https://github.com/DescartesResearch/TeaStore).
 
 ## Build and Run
