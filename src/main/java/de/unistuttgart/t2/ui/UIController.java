@@ -68,8 +68,6 @@ public class UIController {
         model.addAttribute("title", "Cart");
         model.addAttribute("item", new ItemToAdd());
 
-        LOG.info("SessionID : " + session.getId());
-
         // Request and send
         RequestEntity<Void> request = new RequestEntity<>(HttpMethod.GET, URI.create(urlCart + session.getId()));
         ResponseEntity<List<Product>> response =
@@ -96,8 +94,7 @@ public class UIController {
     @PostMapping("/ui/add")
     public String add(@ModelAttribute("item") ItemToAdd item, HttpSession session) {
 
-        LOG.info("SessionID : " + session.getId());
-        LOG.info("Item to Add : " + item.toString());
+        LOG.debug("Add item to card: {} | SessionID: {}", item.toString(), session.getId());
 
         // Body
         UpdateCartRequest body = new UpdateCartRequest(Map.of(item.getProductId(), item.getUnits()));
@@ -117,8 +114,7 @@ public class UIController {
     public RedirectView delete(@ModelAttribute("item") ItemToAdd item, RedirectAttributes redirectAttributes,
         HttpSession session) {
 
-        LOG.info("SessionID : " + session.getId());
-        LOG.info("Item to Delete : " + item.toString());
+        LOG.debug("Delete item from card: {} | SessionID: {}", item.toString(), session.getId());
 
         // Body
         UpdateCartRequest body = new UpdateCartRequest(Map.of(item.getProductId(), -1 * item.getUnits()));
@@ -131,7 +127,8 @@ public class UIController {
 
     @PostMapping("/ui/confirm")
     public String confirm(@ModelAttribute("details") PaymentDetails details, Model model, HttpSession session) {
-        LOG.info("SessionID : " + session.getId());
+
+        LOG.debug("Confirm order | SessionID: {}", session.getId());
 
         // Body
         OrderRequest body =
