@@ -1,7 +1,8 @@
 package de.unistuttgart.t2.ui.domain;
 
 /**
- * TODO
+ * Definition of the JSP model attribute 'item'.
+ * It is used to add and delete items from the cart.
  *
  * @author maumau
  */
@@ -11,7 +12,6 @@ public class ItemToAdd {
     private int units;
 
     public ItemToAdd() {
-        // TODO Auto-generated constructor stub
     }
 
     public ItemToAdd(String productId, int units) {

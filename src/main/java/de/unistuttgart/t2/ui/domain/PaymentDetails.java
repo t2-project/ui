@@ -1,7 +1,8 @@
 package de.unistuttgart.t2.ui.domain;
 
 /**
- * TODO
+ * Definition of the JSP model attribute 'details'.
+ * It is used to complete an order.
  *
  * @author maumau
  */
@@ -12,7 +13,6 @@ public class PaymentDetails {
     private String checksum;
 
     public PaymentDetails() {
-        // TODO Auto-generated constructor stub
     }
 
     public PaymentDetails(String cardNumber, String cardOwner, String checksum) {
