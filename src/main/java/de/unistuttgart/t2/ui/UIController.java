@@ -50,9 +50,9 @@ public class UIController {
     private final String urlConfirm;
 
     public UIController(@Value("${t2.uibackend.url}") String urlUiBackend) {
-        urlProductsAll = urlUiBackend + "products";
-        urlCart = urlUiBackend + "cart";
-        urlConfirm = urlUiBackend + "confirm";
+        urlProductsAll = urlUiBackend + "/products";
+        urlCart = urlUiBackend + "/cart";
+        urlConfirm = urlUiBackend + "/confirm";
     }
 
     ////// PAGES TO REALLY LOOK AT ///////////
