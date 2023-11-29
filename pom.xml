@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
+        <version>3.1.5</version>
         <relativePath /> <!-- lookup parent from repository -->
     </parent>
     <groupId>de.unistuttgart.t2.ui</groupId>
@@ -14,7 +14,7 @@
     <name>webui</name>
     <description>webui of T2-Project</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -36,21 +36,24 @@
         <dependency>
             <groupId>de.unistuttgart.t2</groupId>
             <artifactId>common</artifactId>
-            <version>${T2_COMMON_VERSION}</version>
+            <version>${env.T2_COMMON_VERSION}</version>
         </dependency>
 
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <!--version>${jstl.version}</version-->
-        </dependency>
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
-            <!--uncomment below if deploying in web container-->
-            <!-- scope>provided</scope-->
+            <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>jakarta.servlet.jsp.jstl</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.web</groupId>
+            <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+            <version>3.0.1</version>
+        </dependency>
 
     </dependencies>
 
