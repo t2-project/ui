@@ -1,7 +1,7 @@
 # ui
 FROM eclipse-temurin:17-jre
 WORKDIR /opt
-ENV PORT 8080
+ENV PORT=8080
 EXPOSE 8080
 COPY target/*.war /opt/app.war
-ENTRYPOINT exec java $JAVA_OPTS -jar app.war
+ENTRYPOINT ["java","-jar","app.war"]
